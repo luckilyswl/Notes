@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddActivity">
+
+    <LinearLayout
+        android:id="@+id/id_insert_btns_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_cancle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="取消"
+            android:onClick="cancle"
+            tools:ignore="OnClick" />
+
+        <Button
+            android:id="@+id/btn_pic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="图片"
+            android:onClick="cancle"
+            tools:ignore="OnClick" />
+
+        <Button
+            android:id="@+id/btn_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="视频"
+            android:onClick="cancle"
+            tools:ignore="OnClick" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="保存"
+            android:onClick="save"
+            tools:ignore="OnClick" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/id_image_iv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/id_insert_btns_ll"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/edt_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:textColor="#000"
+        android:background="@null"
+        android:layout_below="@id/id_image_iv"
+        android:hint="有了记事本，我再也不会忘记事情了！"/>
+
+
+</RelativeLayout >

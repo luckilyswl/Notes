@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_all"
+            android:icon="@drawable/all"
+            android:title="全部" />
+        <item
+            android:id="@+id/nav_ungroup"
+            android:icon="@drawable/a"
+            android:title="未分组" />
+        <item
+            android:id="@+id/nav_work"
+            android:icon="@drawable/b"
+            android:title="工作" />
+        <item
+            android:id="@+id/nav_life"
+            android:icon="@drawable/c"
+            android:title="生活" />
+        <item
+            android:id="@+id/nav_encryption"
+            android:icon="@drawable/jiami"
+            android:title="加密" />
+        <item
+            android:id="@+id/nav_recycle_bin"
+            android:icon="@android:drawable/ic_menu_delete"
+            android:title="回收站" />
+    </group>
+
+</menu>
