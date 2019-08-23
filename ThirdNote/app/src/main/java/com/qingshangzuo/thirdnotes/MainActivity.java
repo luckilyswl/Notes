@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+            actionBar.setHomeAsUpIndicator(android.R.drawable.ic_menu_view);
         }
 
         navView.setCheckedItem(R.id.nav_all);

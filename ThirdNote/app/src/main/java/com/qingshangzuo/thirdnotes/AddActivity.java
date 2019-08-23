@@ -136,10 +136,10 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
     private void processLocal() {
         Intent intent = new Intent();
+        /* 使用Intent.ACTION_PICK这个Action */
+        intent.setAction(Intent.ACTION_PICK);
         /* 开启Pictures画面Type设定为image */
         intent.setType(IMAGE_TYPE);
-        /* 使用Intent.ACTION_GET_CONTENT这个Action */
-        intent.setAction(Intent.ACTION_GET_CONTENT);
         /* 取得相片后返回本画面 */
         startActivityForResult(intent, LOCAL_IMAGE_CODE);
     }
