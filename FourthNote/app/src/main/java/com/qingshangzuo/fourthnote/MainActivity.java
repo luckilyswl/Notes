@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private SQLiteDatabase dbreader;
     private ListView list;
     private LinearLayout layoutAdd;
+    private ImageButton imgSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,15 @@ public class MainActivity extends AppCompatActivity {
         noteDB = new NoteDb(this);
         dbreader = noteDB.getReadableDatabase();
         layoutAdd = findViewById(R.id.layout_add);
+        imgSearch = findViewById(R.id.img_search);
+
+        imgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

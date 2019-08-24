@@ -9,13 +9,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.hardware.Camera;
-import android.media.MediaPlayer;
-import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.provider.ContactsContract;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -31,19 +27,22 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.qingshangzuo.fourthnote.db.NoteDb;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import ren.qinc.edit.PerformEdit;
 
 public class AddActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -51,6 +50,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     private ImageView ivBack, ivUp, ivDown, ivHuanhang, ivPic, ivTakePic, ivText, ivPaint, ivPlay, imageView,ivSave;
     private EditText editText;
     private LinearLayout layoutEdither;
+    private RelativeLayout layoutText;
     private VideoView videoView;
 
     private String rootUrl = null;
@@ -68,6 +68,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     private static final String FILE_PROVIDER_AUTHORITY = "com.qingshangzuo.fourthnote.fileprovider";
 
     private Uri fileUri;
+
+    private PerformEdit mPerformEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         editText = findViewById(R.id.edt_text);
         videoView = findViewById(R.id.videoview);
         ivSave = findViewById(R.id.iv_save);
+        layoutText = findViewById(R.id.layout_text);
 
         ivBack.setOnClickListener(this);
         ivUp.setOnClickListener(this);
@@ -102,12 +105,22 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         editText.setOnClickListener(this);
         ivSave.setOnClickListener(this);
 
+        //创建PerformEdit，一定要传入不为空的EditText
+        mPerformEdit = new PerformEdit(editText);
+        //mPerformEdit.setDefaultText("这是初始值,不做撤销记录");
+
         rootUrl = Environment.getExternalStorageDirectory().getPath();
         mDb = new NoteDb(this);
         mSqldb = mDb.getWritableDatabase();
 
         //获取图片权限
         PicPermission();
+
+        //TODO:可不可以判断是从哪个页面跳转的？？
+        /*Intent intent = getIntent();
+        String path = intent.getStringExtra("path");
+        videoView.setVideoPath(path);
+        videoView.start();*/
     }
 
     private void PicPermission() {
@@ -142,11 +155,13 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 break;
 
             case R.id.iv_up:
-                //返回上一次步骤
+                //撤销
+                mPerformEdit.undo();
                 break;
 
             case R.id.iv_down:
-                //返回下一次步骤
+                //重做
+                mPerformEdit.redo();
                 break;
 
             case R.id.iv_huanhang:
@@ -168,6 +183,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
             case R.id.iv_text:
                 //更该文字类型
+                layoutEdither.setVisibility(View.GONE);
+                layoutText.setVisibility(View.VISIBLE);
                 break;
 
             case R.id.iv_take_pic:
@@ -193,22 +210,15 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 break;
 
             case R.id.iv_paint:
-                //画板
+                //跳转画板
+                Intent paint = new Intent(AddActivity.this,PaintActivity.class);
+                startActivity(paint);
                 break;
 
             case R.id.iv_play:
                 // 录视频
-                Intent video = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                try{
-                    fileUri= FileProvider.getUriForFile(AddActivity.this,getApplicationContext().getPackageName() + ".provider",createMediaFile());
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
-                video.putExtra(MediaStore.EXTRA_OUTPUT,fileUri);
-                video.putExtra(MediaStore.EXTRA_VIDEO_QUALITY,1);
-
-                startActivityForResult(video,1);
-                videoView.setVisibility(View.VISIBLE);
+                Intent video = new Intent(AddActivity.this,VideoActivity.class);
+                startActivity(video);
                 break;
 
             case R.id.edt_text:
@@ -229,33 +239,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             default:
                 break;
         }
-    }
-
-    private File createMediaFile() throws IOException {
-
-        //if(Utils.checkSDCardAvaliable()) {
-            if ((Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))) {
-                // 选择自己的文件夹
-                String path = Environment.getExternalStorageDirectory().getPath() + "/myvideo/";
-                // Constants.video_url 是一个常量，代表存放视频的文件夹
-                File mediaStorageDir = new File(path);
-                if (!mediaStorageDir.exists()) {
-                    if (!mediaStorageDir.mkdirs()) {
-                        Log.e("TAG", "文件夹创建失败");
-                        return null;
-                    }
-                }
-
-                // 文件根据当前的毫秒数给自己命名
-                String timeStamp = String.valueOf(System.currentTimeMillis());
-                timeStamp = timeStamp.substring(7);
-                String imageFileName = "V" + timeStamp;
-                String suffix = ".mp4";
-                File mediaFile = new File(mediaStorageDir + File.separator + imageFileName + suffix);
-                return mediaFile;
-            }
-        //}
-        return null;
     }
 
 

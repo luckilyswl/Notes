@@ -11,8 +11,8 @@ import android.widget.VideoView;
 
 import com.qingshangzuo.fourthnote.db.NoteDb;
 
-import static com.qingshangzuo.fourthnote.R.drawable.ic_back;
-import static com.qingshangzuo.fourthnote.db.NoteDb.IMAGE;
+
+
 
 public class ShowActivity extends AppCompatActivity {
 
@@ -37,7 +37,7 @@ public class ShowActivity extends AppCompatActivity {
         mSql = mDb.getWritableDatabase();
         mTextview.setText(getIntent().getStringExtra(NoteDb.CONTENT));
         time.setText(getIntent().getStringExtra(NoteDb.TIME));
-        
+
 
         ivBack = findViewById(R.id.iv_back);
         ivBack.setOnClickListener(new View.OnClickListener() {

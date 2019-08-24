@@ -16,30 +16,29 @@
             android:id="@+id/iv_back"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="10dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_back"/>
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_back" />
 
-       <!--TODO:添加删除-->
-        <!--<ImageView
-            android:id="@+id/iv_delete"
+        <ImageView
+            android:id="@+id/iv_save"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="330dp"
             android:layout_gravity="center_vertical"
-            android:src="@android:drawable/ic_menu_delete"/>-->
+            android:layout_marginLeft="330dp"
+            android:src="@android:drawable/ic_menu_save" />
 
     </LinearLayout>
 
-<!---->
+    <!--功能-->
     <LinearLayout
         android:id="@+id/layout_editer"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimaryDark"
-        android:visibility="gone"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/iv_up"
@@ -47,7 +46,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_up"/>
+            android:src="@drawable/ic_up" />
 
         <ImageView
             android:id="@+id/iv_down"
@@ -55,7 +54,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_down"/>
+            android:src="@drawable/ic_down" />
 
         <ImageView
             android:id="@+id/iv_huanhang"
@@ -63,7 +62,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_huanhang"/>
+            android:src="@drawable/ic_huanhang" />
 
         <ImageView
             android:id="@+id/iv_pic"
@@ -71,7 +70,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_pic"/>
+            android:src="@drawable/ic_pic" />
 
         <ImageView
             android:id="@+id/iv_take_pic"
@@ -79,7 +78,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_take_pic"/>
+            android:src="@drawable/ic_take_pic" />
 
         <ImageView
             android:id="@+id/iv_text"
@@ -87,7 +86,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_text"/>
+            android:src="@drawable/ic_text" />
 
         <ImageView
             android:id="@+id/iv_paint"
@@ -95,59 +94,115 @@
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_paint"/>
+            android:src="@drawable/ic_paint" />
 
         <ImageView
             android:id="@+id/iv_play"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginLeft="20dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_play"/>
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/ic_play" />
 
     </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="40dp"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_marginTop="10dp"
-                android:id="@+id/imageview"
-                android:layout_width="260dp"
-                android:layout_height="360dp"
-                android:layout_gravity="center"
-                android:visibility="gone"/>
-
-            <VideoView
-                android:id="@+id/videoview"
-                android:layout_marginTop="10dp"
-                android:layout_width="260dp"
-                android:layout_height="360dp"
-                android:layout_gravity="center"
-                android:visibility="gone"/>
-
-            <EditText
-                android:id="@+id/edt_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:hint="记事"/>
-
-        </LinearLayout>
-
-
-    <ImageView
-        android:id="@+id/iv_save"
-        android:layout_width="40dp"
+    <!--富文本-->
+    <RelativeLayout
+        android:id="@+id/layout_text"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:src="@android:drawable/ic_menu_save"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="50dp"
-        android:layout_marginRight="18dp"
-        android:background="@drawable/add"/>
+        android:visibility="gone"
+        tools:context=".MainActivity">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/action_bold"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/font_bold" />
+
+                <ImageView
+                    android:id="@+id/action_italic"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/font_italic" />
+
+                <ImageView
+                    android:id="@+id/action_underline"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/font_underline" />
+
+                <ImageView
+                    android:id="@+id/action_font_size"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/font_size" />
+
+                <ImageView
+                    android:id="@+id/action_font_color"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/font_color" />
+
+                <ImageView
+                    android:id="@+id/action_font_background_color"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/font_background_color" />
+
+
+                <ImageView
+                    android:id="@+id/action_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:src="@mipmap/font_img" />
+
+            </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageview"
+            android:layout_width="260dp"
+            android:layout_height="360dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:visibility="gone" />
+
+        <VideoView
+            android:id="@+id/videoview"
+            android:layout_width="260dp"
+            android:layout_height="360dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:visibility="gone" />
+
+        <EditText
+            android:id="@+id/edt_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="记事" />
+
+    </LinearLayout>
 
 </RelativeLayout>

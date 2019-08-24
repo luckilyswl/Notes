@@ -51,11 +51,11 @@ public class MyAdapter extends BaseAdapter {
         String dbtime = cursor.getString(cursor.getColumnIndex("time"));
 
         //TODO：添加图片
-        String dbimg = cursor.getString(cursor.getColumnIndex("img"));
+//        String dbimg = cursor.getString(cursor.getColumnIndex("img"));
 
         content.setText(dbcontent);
         time.setText(dbtime);
-        img.setImageURI(Uri.parse(dbimg));
+        //img.setImageURI(Uri.parse(dbimg));
 
         return layout;
     }
